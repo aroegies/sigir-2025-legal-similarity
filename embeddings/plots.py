@@ -11,8 +11,8 @@ def lineplot(sim_csv_dir:str, experiment_path:str, clause_type:str, output_dir:s
     # plot the lines
     _, ax = plt.subplots()
     ax.set_title(f"{experiment_path}")
-    ax.plot(df['orig_vs_same_cos'].tolist(), label="Original vs Same Meaning cos", color="green", marker="o")
-    ax.plot(df['orig_vs_diff_cos'].tolist(), label="Original vs Different Meaning cos", color="red", marker="o")
+    # ax.plot(df['orig_vs_same_cos'].tolist(), label="Original vs Same Meaning cos", color="green", marker="o")
+    # ax.plot(df['orig_vs_diff_cos'].tolist(), label="Original vs Different Meaning cos", color="red", marker="o")
     ax.plot(df['orig_vs_same_L2'].tolist(), label="Original vs Same Meaning L2", color="green")
     ax.plot(df['orig_vs_diff_L2'].tolist(), label="Original vs Different Meaning L2", color="red")
     ax.set_xlabel("Clause Number")
@@ -70,7 +70,7 @@ def scatter_plot(clause_dir:str, sim_csv_dir: str, experiment_path: str, clause_
 
 def sigir_boxplots(sim_csv_dir, experiment_paths, clause_types, output_dir):
      # sigir paper plots
-    output_dir = "plots/sigir-paper"
+    # output_dir = "plots/sigir-paper"
 
     sim_types = ["cos", "L2"]
     for sim_type in sim_types:
@@ -124,19 +124,26 @@ def sigir_boxplots(sim_csv_dir, experiment_paths, clause_types, output_dir):
 
 if __name__ == "__main__":
 
-    sim_csv_dir = "sim-csvs"
+    # sim_csv_dir = "sim-csvs"
   
-    experiment_paths = [
-        "models/fasttext/crawl-300d-2M-subword-norm",
+    # experiment_paths = [
+    #     "models/fasttext/crawl-300d-2M-subword-norm",
 
-        "models/legal-bert/legal-bert-base-uncased-meanpool-norm",
+    #     "models/legal-bert/legal-bert-base-uncased-meanpool-norm",
 
-        "models/nvidia/nv-embed-v2-norm",
+    #     "models/nvidia/nv-embed-v2-norm",
 
-        "models/openai/text-embedding-3-large",
+    #     "models/openai/text-embedding-3-large",
         
-        "models/gemini/text-embedding-004"
-    ]
+    #     "models/gemini/text-embedding-004"
+    # ]
+
+
+    sim_csv_dir = "sentence-sim-csvs"
+    # experiment_paths = [
+    #     "models/fasttext/crawl-300d-2M-subword-norm-sentences",
+    #     "models/legal-bert/legal-bert-base-uncased-meanpool-norm-sentences",
+    # ]
 
     clause_types = [
         "Assignment",
@@ -151,6 +158,24 @@ if __name__ == "__main__":
         "Termination for Convenience"
     ]
 
-    sigir_boxplots(sim_csv_dir, experiment_paths, clause_types, "plots/sigir-paper")
+    # sigir_boxplots(sim_csv_dir, experiment_paths, clause_types, "plots/sigir-paper")
+
+    # for experiment_path in experiment_paths:
+    #     for clause_type in clause_types:
+    #         lineplot(sim_csv_dir, experiment_path, clause_type, "plots/sentence-lineplots")
 
 
+    
+    experiment_paths = [
+        "models/fasttext/crawl-300d-2M-subword-norm-sentences",
+
+        "models/legal-bert/legal-bert-base-uncased-meanpool-norm-sentences",
+
+        "models/nvidia/nv-embed-v2-norm-sentences",
+
+        "models/openai/text-embedding-3-large-sentences",
+        
+        "models/gemini/text-embedding-004-sentences"
+    ]
+
+    sigir_boxplots(sim_csv_dir, experiment_paths, clause_types, "plots/sigir-paper-sentences")
